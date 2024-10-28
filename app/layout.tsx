@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "@/components/myComponents/Layout/Sidebar";
 import Navbar from "@/components/myComponents/Layout/Navbar";
-import Footer from "@/components/myComponents/Layout/Footer";
-
+// import Footer from "@/components/myComponents/Layout/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,12 +17,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="grid grid-cols-[1fr_5fr]">      
-            <Sidebar />    
-          <div>
-              <Navbar />
-            {children}
-              <Footer />
+        <main className="grid grid-cols-[auto_1fr] h-screen">
+          <Sidebar />
+          <div className="flex flex-col h-full">
+            <Navbar />
+            <div className="flex-grow overflow-auto p-4">
+              {children}
+            </div>
+            {/* <Footer /> */}
           </div>
         </main>
       </body>
