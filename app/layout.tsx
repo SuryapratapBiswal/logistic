@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "@/components/myComponents/Layout/Sidebar";
 import Navbar from "@/components/myComponents/Layout/Navbar";
-// import Footer from "@/components/myComponents/Layout/Footer";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,14 +17,42 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="grid grid-cols-[auto_1fr] h-screen">
-          <Sidebar />
-          <div className="flex flex-col h-full">
-            <Navbar />
-            <div className="flex-grow overflow-auto p-4">
+        <main className="flex h-screen overflow-hidden">
+          {/* Sidebar fixed to the left */}
+          <div className="fixed top-0 left-0 h-full">
+            <Sidebar />
+          </div>
+
+          {/* Main content area */}
+          <div className="flex flex-col w-full ml-64"> {/* Adjust ml-64 to match Sidebar width */}
+            {/* Navbar fixed at the top */}
+            <div className="fixed top-0 left-64 right-0 z-10"> {/* Adjust left-64 to match Sidebar width */}
+              <Navbar />
+            </div>
+
+            {/* Scrollable content area for children */}
+            <div className="flex-grow mt-16 p-4 overflow-y-auto"> {/* Adjust mt-16 to match Navbar height */}
+              <Toaster
+                position="bottom-right"
+                reverseOrder={false}
+                toastOptions={{
+                  className: "",
+                  duration: 2000,
+                  style: {
+                    border: "1px solid #713200",
+                    padding: "16px",
+                    color: "#713200",
+                  },
+                  success: {
+                    duration: 2000,
+                  },
+                  error: {
+                    duration: 2000,
+                  },
+                }}
+              />
               {children}
             </div>
-            {/* <Footer /> */}
           </div>
         </main>
       </body>

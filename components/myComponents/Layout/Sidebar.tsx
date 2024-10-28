@@ -19,32 +19,32 @@ const menuItems = [
         label: "Orders",
         icon: <FiBox />,
         subItems: [
-            { label: "New Orders", path: "/orders/new" },
-            { label: "Past Orders", path: "/orders/past" },
-            { label: "Pending Orders", path: "/orders/pending" }
+            // { label: "Add Order", path: "/orders/add" },
+            { label: "Order List", path: "/orders" },
         ]
     }
 ];
 
 const Sidebar = () => {
-    const [openMenu, setOpenMenu] = useState(null);
+    const [openMenu, setOpenMenu] = useState<number | null>(null);
     const [collapsed, setCollapsed] = useState(false);
-    const [selectedSubItem, setSelectedSubItem] = useState(null);
+    const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
 
-    const handleMenuClick = (index:any) => {
+
+    const handleMenuClick = (index: number) => {
         setOpenMenu(openMenu === index ? null : index);
     };
+
 
     const toggleSidebar = () => {
         setCollapsed(!collapsed);
     };
 
-    const handleSubItemClick = (subItem:any) => {
-        setSelectedSubItem(subItem);
+    const handleSubItemClick = (label: string) => {
+        setSelectedSubItem(label);
     };
-
     return (
-        <div className={`bg-gradient h-[100vh] px-4 py-4 shadow-2xl text-white transition-all duration-500 ${collapsed ? 'w-20' : 'w-64'}`}>
+        <div className={`bg-gradient h-full  px-4 py-4 shadow-2xl text-white transition-all duration-500 ${collapsed ? 'w-20' : 'w-64'}`}>
             <div className="flex justify-between items-center mb-5 cursor-pointer" onClick={toggleSidebar}>
                 <p className={`text-2xl lilita-one-regular ${collapsed ? 'hidden' : ''}`}>SB-Logistics</p>
                 <IoMenu size={24} />
@@ -53,7 +53,7 @@ const Sidebar = () => {
                 {menuItems.map((item, index) => (
                     <div
                         key={index}
-                        className={`hover-effect ${openMenu === index ? 'bg-blue-600' : ''} rounded-lg`}
+                        className={`hover-effect ${openMenu === index ? 'bg-[#9333EA]' : ''} rounded-lg`}
                     >
                         <div
                             className="flex justify-between items-center cursor-pointer px-2 rounded-lg"

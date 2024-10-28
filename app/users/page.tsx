@@ -20,6 +20,8 @@ const Page = () => {
     // Define the type for the user data
     interface User {
         userid: string;
+        first_name: string,
+        last_name: string,
         phone: string;
         address: string;
         email: string;
@@ -63,6 +65,8 @@ const Page = () => {
     const data: User[] = [
         {
             userid: 'U001',
+            first_name:"John",
+            last_name:"Wick",
             phone: '123-456-7890',
             address: '123 Main St, Springfield',
             email: 'john.doe@example.com',
@@ -71,12 +75,16 @@ const Page = () => {
         {
             userid: 'U002',
             phone: '098-765-4321',
+            first_name:"John",
+            last_name:"Wick",
             address: '456 Elm St, Riverdale',
             email: 'jane.smith@example.com',
             total_spends: 1200,
         },
         {
             userid: 'U003',
+            first_name:"John",
+            last_name:"Wick",
             phone: '555-123-4567',
             address: '789 Maple Ave, Lakeside',
             email: 'alice.johnson@example.com',
@@ -84,6 +92,8 @@ const Page = () => {
         },
         {
             userid: 'U004',
+            first_name:"John",
+            last_name:"Wick",
             phone: '555-987-6543',
             address: '101 Pine St, Hilltop',
             email: 'bob.brown@example.com',
@@ -104,7 +114,7 @@ const Page = () => {
                     </div>
                 </div>
                 <Link href={'/users/add'}>
-                    <Button className="bg-blue-500"><FaPlus/> Add User</Button>
+                    <Button className="bg-gradient"><FaPlus/> Add User</Button>
                 </Link>
             </div>
             <TableComponent

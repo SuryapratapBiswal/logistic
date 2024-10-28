@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
-import { DownloadTableExcel } from 'react-export-table-to-excel';
+// import { DownloadTableExcel } from 'react-export-table-to-excel';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Button } from '@/components/ui/button';
 
 interface Column {
   Header: string;
@@ -158,8 +159,8 @@ const TableComponent: React.FC<TableComponentProps> = ({
           )}
           {showPDF_Print && (
             <div className="flex space-x-2">
-              <button onClick={downloadExcel} className="bg-blue-500 text-white px-4 py-2 rounded">Download Excel</button>
-              <button onClick={handleTableToPdf} className="bg-red-500 text-white px-4 py-2 rounded">Download PDF</button>
+              <Button onClick={downloadExcel} className="bg-gradient text-white px-4 py-2 rounded">Download Excel</Button>
+              <Button onClick={handleTableToPdf} className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded">Download PDF</Button>
             </div>
           )}
         </div>
@@ -212,7 +213,7 @@ const TableComponent: React.FC<TableComponentProps> = ({
               <li key={index}>
                 <button
                   onClick={() => handleNewPageNo(index + 1)}
-                  className={`px-2 py-1 ${pageNo === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                  className={`px-2 py-1 ${pageNo === index + 1 ? 'bg-gradient text-white' : 'bg-gray-200'}`}
                 >
                   {index + 1}
                 </button>
