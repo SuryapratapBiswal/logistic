@@ -1,5 +1,6 @@
 "use client";
 
+import DashboardLayout from '@/components/common/layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -44,7 +45,7 @@ const Page = () => {
     });
 
     return (
-        <div>
+        <DashboardLayout>
             <div className="flex justify-between px-4 mb-10">
                 <div className="flex items-center gap-4">
                     <div className="bg-gradient p-4 rounded-md w-14 text-white">
@@ -144,7 +145,7 @@ const Page = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </DashboardLayout>
     )
 };
 

@@ -9,6 +9,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { FaListUl, FaPlus } from 'react-icons/fa'
 import toast from "react-hot-toast";
+import DashboardLayout from '@/components/common/layout'
 
 const initialValues = {
   phone: '',
@@ -40,7 +41,7 @@ const Page = () => {
     onSubmit,
   });
   return (
-    <div>
+    <DashboardLayout>
       <div className="flex justify-between px-4 mb-10 ">
         <div className="flex items-center gap-4">
           <div className="bg-gradient p-4 rounded-md w-14 text-white">
@@ -147,7 +148,7 @@ const Page = () => {
         </form>
 
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 

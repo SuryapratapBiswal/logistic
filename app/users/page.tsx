@@ -1,4 +1,5 @@
 "use client";
+import DashboardLayout from '@/components/common/layout';
 import TableComponent from '@/components/common/ReactTable/TableComponent';
 import { Button } from '@/components/ui/button';
 import useTablePagination from '@/hooks/prTableHook';
@@ -102,7 +103,7 @@ const Page = () => {
     ];
 
     return (
-        <div>
+        <DashboardLayout>
             <div className="flex justify-between px-4 mb-10 ">
                 <div className="flex items-center gap-4">
                     <div className="bg-gradient p-4 rounded-md w-14 text-white">
@@ -127,7 +128,7 @@ const Page = () => {
                 sortBy={sortBy}
                 slno={true}
             />
-        </div>
+        </DashboardLayout>
     );
 };
 
