@@ -1,8 +1,9 @@
+import DashboardLayout from '@/components/common/layout'
 import React from 'react'
 
 const Page = () => {
   return (
-    <div>Profile</div>
+    <DashboardLayout>Profile</DashboardLayout>
   )
 }
 
