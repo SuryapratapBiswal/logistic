@@ -5,8 +5,14 @@ import { IoMenu } from "react-icons/io5";
 import { FaRegUser, FaAngleRight, FaAngleDown } from "react-icons/fa";
 import { FiBox } from "react-icons/fi";
 import Link from 'next/link';
+import { Grid2X2Icon } from 'lucide-react';
 
 const menuItems = [
+    {
+        label: "Dashboard",
+        icon: <Grid2X2Icon />,
+        path: "/dashboard", // Adding a path for Dashboard
+    },
     {
         label: "Users",
         icon: <FaRegUser />,
@@ -19,7 +25,6 @@ const menuItems = [
         label: "Orders",
         icon: <FiBox />,
         subItems: [
-            // { label: "Add Order", path: "/orders/add" },
             { label: "Order List", path: "/orders" },
         ]
     }
@@ -30,11 +35,9 @@ const Sidebar = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
 
-
     const handleMenuClick = (index: number) => {
         setOpenMenu(openMenu === index ? null : index);
     };
-
 
     const toggleSidebar = () => {
         setCollapsed(!collapsed);
@@ -43,8 +46,9 @@ const Sidebar = () => {
     const handleSubItemClick = (label: string) => {
         setSelectedSubItem(label);
     };
+
     return (
-        <div className={`bg-gradient h-full  px-4 py-4 shadow-2xl text-white transition-all duration-500 ${collapsed ? 'w-20' : 'w-64'}`}>
+        <div className={`bg-gradient h-full px-4 py-4 shadow-2xl text-white transition-all duration-500 ${collapsed ? 'w-20' : 'w-64'}`}>
             <div className="flex justify-between items-center mb-5 cursor-pointer" onClick={toggleSidebar}>
                 <p className={`text-2xl lilita-one-regular ${collapsed ? 'hidden' : ''}`}>SB-Logistics</p>
                 <IoMenu size={24} />
@@ -55,22 +59,31 @@ const Sidebar = () => {
                         key={index}
                         className={`hover-effect ${openMenu === index ? 'bg-[#9333EA]' : ''} rounded-lg`}
                     >
-                        <div
-                            className="flex justify-between items-center cursor-pointer px-2 rounded-lg"
-                            onClick={() => handleMenuClick(index)}
-                        >
-                            <div className="flex gap-2 items-center">
-                                {item.icon}
-                                {!collapsed && (
-                                    <li className={`${openMenu === index ? 'font-bold text-white' : ''}`}>
-                                        {item.label}
-                                    </li>
-                                )}
+                        {item.subItems ? (
+                            // If item has subItems, render as collapsible menu
+                            <div
+                                className="flex justify-between items-center cursor-pointer px-2 rounded-lg"
+                                onClick={() => handleMenuClick(index)}
+                            >
+                                <div className="flex gap-2 items-center">
+                                    {item.icon}
+                                    {!collapsed && (
+                                        <li className={`${openMenu === index ? 'font-bold text-white' : ''}`}>
+                                            {item.label}
+                                        </li>
+                                    )}
+                                </div>
+                                {!collapsed && (openMenu === index ? <FaAngleDown /> : <FaAngleRight />)}
                             </div>
-                            {!collapsed && (openMenu === index ? <FaAngleDown /> : <FaAngleRight />)}
-                        </div>
+                        ) : (
+                            // If no subItems, render as a direct link
+                            <Link href={item.path} className="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-[#9333EA]">
+                                {item.icon}
+                                {!collapsed && <li>{item.label}</li>}
+                            </Link>
+                        )}
                         {/* Dropdown items with transition */}
-                        {!collapsed && (
+                        {!collapsed && item.subItems && (
                             <ul
                                 className={`ml-6 mt-2 overflow-hidden transition-all duration-500 ease-in-out ${openMenu === index ? 'max-h-40' : 'max-h-0'}`}
                             >
